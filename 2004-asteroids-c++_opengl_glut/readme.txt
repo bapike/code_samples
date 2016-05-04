@@ -1,36 +1,63 @@
-Assignment 2: Asteroids: Lighting and Motion
-CSC461-001 Fall 2004 - Dr. Healey
-Brian Pike
-bapike@unity.ncsu.edu
+/  Copyright 2004, 2016 Brian Pike
+|
+|  You may redistribute this work under the terms of the GNU General Public
+|  License as published by the Free Software Foundation, either version 2 of
+\  the License, or any later version.
+
+This is my final version of a project from a graphics course
+at North Carolina State University (CSC461-001, Fall 2004, Prof. Healey).
 
 Description:
-This program draws 3 shaded and lighted asteroids, along with a
-shaded and lighted spaceship on the screen.  The spaceship can be
-controlled with the left and right arrow keys and can use 'x' to
-move forward.  The spaceship can also fire its weapon using the 'z'
-key.  After a period of time, the bullets disappear.
+This is a rough clone of the game `Asteroids', written in C++ with
+OpenGL and GLUT.
 
-The motion of the spaceship is fairly realistic, although turning
-is exact (i.e., no rotational momentum), and space here has friction.
+It draws a spaceship that can turn, move forward, and
+fire a particle weapon, along with asteroids that move around
+the screen, and (eventually) an enemy spaceship.
+Everything has shading and lighting.  The playing surface is
+a flat torus, as objects wrap around between the top/bottom
+and left/right.  When shot, large asteroids break into smaller
+asteroids.
+
+It was written on Linux, then ported to Windows before turning it in.
+
+The motion of the spaceship is somewhat realistic, although turning
+is exact (i.e., no rotational momentum), and (for playability)
+the spaceship experiences friction from space.
 The spaceship is limited to a maximum speed.  The spaceship also
 has a very ugly paint job.  The spaceship cannot shoot constantly;
 there is some delay if you just hold down the button.  Thus the
 number of shots is limited by the lifetime of the shots and the rate
-at which they can be produced.
+at which they can be produced.  The shots disappear after a certain
+amount of time.
 
-To exit, use the popup window that comes up if you click the right
-mouse button.
+Note to any students:
+If this assignment is still assigned, then the professor is undoubtedly
+using some form of cheating detection.  Use this code as inspiration,
+but don't copy. 
 
-Special Notes:
-There's some code that spits debug messages to the console, mostly
-from generic keyboard and mouse-handling functions.  I hope this
-isn't a problem.
+Controls:
+ 'x' moves forward
+ 'z' fires
+ 'q' quits
+ left arrow key rotates left
+ right arrow key rotates right
+ right clicking brings up a menu to restart or quit
 
-Compiling:
-By following the directions from:
+Known Bugs:
+ - the spaceship can try to respawn too close to an asteroid
+ - the physics is not exact (I think nonphysical behavior was part of the assignment :-/)
+ - something should happen when asteroids collide
+ - when a shot hits an asteroid, the broken pieces of the asteroid should
+   have velocities that are 'fair' (e.g., use elastic collisions)
+ - it should be rewritten to use more modern C++ 
+ - the performance was adequate, but never very good for something so simple
+
+Compiling on Windows:
+Install the dependencies.  Follow the directions from:
 http://www.csc.ncsu.edu/faculty/healey/csc461/assn_1/opengl.pdf
-to create a project and then importing *.cpp, *.h, one can compile
-to an executable.  I didn't include all of the files in the
-project because I don't know which ones are important or not.  Besides,
-if the reason you want the source code is to use MOSS, then it would
-be better to include only the C++ code.
+to create a project and then import the *.cpp, *.h files.
+
+Compiling on Linux:
+Install the dependencies and use 'make'.
+
